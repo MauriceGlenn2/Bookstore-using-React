@@ -19,3 +19,5 @@ const Price = ({ salePrice, originalPrice }) => {
 };
 
 export default Price;
+
+// trywrapping (orginprice).tofixed
