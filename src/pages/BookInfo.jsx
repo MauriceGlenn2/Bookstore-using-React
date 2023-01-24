@@ -11,6 +11,8 @@ const BookInfo = ({ books, addToCart, cart }) => {
     const { id } = useParams();
     const book = books.find((book) => +book.id == +id); //+ converts into number
     
+    //remove book from cart
+   // function removeBook(book) {
 
     //adding book to cart
     function addBookToCart(book) {

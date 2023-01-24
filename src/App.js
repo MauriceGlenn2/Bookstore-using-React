@@ -7,6 +7,7 @@ import { books } from './data.js';
 import BookInfo from "./pages/BookInfo.jsx";
 import Cart from "./pages/Cart.jsx";
 import React, { useEffect, useState } from "react";
+import { counter } from "@fortawesome/fontawesome-svg-core";
 
 function App() {
   const [cart, setCart] = useState([])
@@ -14,6 +15,7 @@ function App() {
 function addToCart(book){
  setCart([...cart, {...book, quanity: 1 }])
 }
+
 
 function changeQuantity(book, quanity){
   setCart(
@@ -27,6 +29,17 @@ function changeQuantity(book, quanity){
   )
 }
 
+function removeItem(item) {
+setCart(cart.filter(book => book.id !== item.id))
+}
+
+function numberOfItem (){
+  let counter = 0
+  cart.forEach(item => counter += item.quanity
+    )
+    return counter
+  }
+
 useEffect(() => {
   console.log(cart);
 }, [cart]);
@@ -37,12 +50,25 @@ useEffect(() => {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav numberOfItem={numberOfItem()} />
         <Route path="/" exact component={Home} />
         <Route path="/books" exact render={() => <Books books={books} />} />
-        <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart}/>} />
+        <Route
+          path="/books/:id"
+          render={() => <BookInfo books={books} addToCart={addToCart} />}
+        />
         {/* :id for when you click a book in books, routes to the book */}
-        <Route path="/cart/" render={() => <Cart books={books} cart={cart} changeQuantity={changeQuantity}/>} />
+        <Route
+          path="/cart/"
+          render={() => (
+            <Cart
+              books={books}
+              cart={cart}
+              changeQuantity={changeQuantity}
+              removeItem={removeItem}
+            />
+          )}
+        />
         <Footer />
       </div>
     </Router>
