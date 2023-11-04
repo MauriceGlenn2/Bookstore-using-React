@@ -1,2 +1,3 @@
 - You can filter through with ratings
 - filter pricing will be fixed
+- clicking on a book should bring up more information on the book
