@@ -1,1 +1,2 @@
-
+- You can filter through with ratings
+- filter pricing will be fixed
